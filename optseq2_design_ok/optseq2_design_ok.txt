@@ -1,0 +1,31 @@
+4 runs:
+- 2 steady (1 snake pattern per trial, density 4, randomised - 12 conditions (2 null [t0-t1] * 6 reps, 10 durations [t2-t11; in ms] * 7 reps)
+- 2 flickering (random seq of snake patterns, 25ms each = 3 frames --> 40Hz - 12 conditions (2 null, 10 seqs of nflick stim)
+
+
+# OPTSEQ2_design
+
+optseq2 \
+  --ntp 360 \ # 5.4 min run
+  --tr 0.9 \ # upsampled TR for slice timing correction (real TR = 1.6)
+  --psdwin 0 11.7 0.9 \
+  --ev dur_0 0.9 6 \  #	t0 = 0  / nflick = 0
+  --ev dur_1 0.9 6 \  # t1 = 0 	/ nflick = 0
+  --ev dur_2 0.9 7 \  #	t2 = 25 / nflick = 1
+  --ev dur_3 0.9 7 \  # t3 = 50 / nflick = 2
+  --ev dur_4 0.9 7 \  #	t4 = 75 / nflick = 3
+  --ev dur_5 0.9 7 \  #	t5 = 100 / nflick = 4
+  --ev dur_6 0.9 7 \  #	t6 = 175 / nflick = 7
+  --ev dur_7 0.9 7 \  #	t7 = 275 / nflick = 11
+  --ev dur_8 0.9 7 \  #	t8 = 475 / nflick = 19
+  --ev dur_9 0.9 7 \  #	t9 = 750 / nflick = 30
+  --ev dur_10 0.9 7 \ # t10 = 1225 / nflick = 49
+  --ev dur_11 0.9 7 \ # t11 = 2000 / nflick = 80
+  --tnullmin 2.7 \
+  --tnullmax 6.3 \
+  --focb 500 \
+  --ar1 0.3 \
+  --tsearch 10 \
+  --nkeep 20 \
+  --cost eff \
+  --o design_12cond_focb_ok
