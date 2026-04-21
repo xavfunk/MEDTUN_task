@@ -7,7 +7,7 @@ preferences:
 window:
     size: [1920, 1080]
     pos: [0, 0]
-    color: [0, 0, 0]
+    color: [.2, 0.2, 0.2]
     fullscr: True
     winType: pyglet
     waitBlanking: True
