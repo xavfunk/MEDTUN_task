@@ -5,7 +5,6 @@ from psychopy.visual import TextStim, Circle, ImageStim
 from psychopy.event import waitKeys, getKeys
 from psychopy import core, tools
 from code.TUN_trial import TuningTrial
-
 # other imorts
 import os.path as op
 import numpy as np
@@ -66,9 +65,12 @@ class TuningSession(PylinkEyetrackerSession):
         # fix dot color and size  
         self.fix_dot_color_idx = 0
         self.fix_dot_switch_idx = 0
+        print(self.win.color)
 
         self.fix_dot_colors = ['green', 'red'] # equivalent to [1, -1, -1] and [-1, 1, -1]
         self.default_fix = Circle(self.win, radius=self.settings['task']['fix_dot_size'], edges = 100, lineWidth=0, units = 'deg')
+        #930 is the diameter of the stimulus,sorry for hardcoding
+        self.background = Circle(self.win, radius=930/2, edges = 100, lineWidth=0, units = 'pix', color=(0, 0, 0))
         
         # code checking for fix sizes. the method above creates dots of 1 dva or 94.10695702 px
         # fixation_radius_pixels2=tools.monitorunittools.deg2pix(self.settings['task']['fix_dot_size'], self.monitor)/2
@@ -83,7 +85,9 @@ class TuningSession(PylinkEyetrackerSession):
         # self.default_fix.setSize(self.settings['task']['fix_dot_size'], units = 'deg')
         # self.default_fix.setSize(1, units = 'deg')
         self.default_fix.setColor('black') # starting color
-        self.default_fix.setPos((self.settings['stimuli']['x_offset'], self.settings['stimuli']['y_offset']))       
+        self.default_fix.setPos((self.settings['stimuli']['x_offset'], self.settings['stimuli']['y_offset']))  
+        # -94.10695702   is 1 dva, sorry for hardcoding
+        self.background.setPos((self.settings['stimuli']['x_offset'], self.settings['stimuli']['y_offset'] * 94.10695702))       
 
         # setting up fixation task duration and timings
         print(np.sum(self.trial_sequence_df.iti_TR))
@@ -140,8 +144,9 @@ class TuningSession(PylinkEyetrackerSession):
             self.trial_type = [] 
             self.recording_durations = [] 
             self.delta_peaks = [] 
-            self.n_peaks_found = [] 
+            self.n_peaks_found = []
 
+    
     def create_trials(self, timing='frames'):
         
         self.trials = []
@@ -382,6 +387,7 @@ class TuningSession(PylinkEyetrackerSession):
             #     # change color
             #     self.fix_dot_color_idx += 1
             #     self.default_fix.setColor(self.fix_dot_colors[self.fix_dot_color_idx % len(self.fix_dot_colors)])
+            self.background.draw()
 
             self.default_fix.draw()
             if self.debug:
@@ -423,6 +429,7 @@ class TuningSession(PylinkEyetrackerSession):
                 if self.debug:
                     self.debug_message.setText(f"preparing to run, awaiting trigger, time: {self.clock.getTime(): .2f}")
                     self.debug_message.draw()
+                self.background.draw()
 
                 self.default_fix.draw()
 
@@ -447,6 +454,9 @@ class TuningSession(PylinkEyetrackerSession):
 
                 if self.debug:
                     self.debug_message.draw()
+
+                self.background.draw()
+
                 self.default_fix.draw()
 
                 self.win.flip()
