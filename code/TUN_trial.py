@@ -99,8 +99,6 @@ class TuningTrial(Trial):
                 self.session.default_fix.draw()
                 
             else:
-                # draw background
-                self.session.background.draw()
                 # draw fixation 
                 self.session.default_fix.draw()
 
@@ -138,8 +136,6 @@ class TuningTrial(Trial):
             # potentially change color either here or in the beginning of draw
             #self.session.switch_fix_color()
 
-            # draw background
-            self.session.background.draw()
 
             # draw fixation
             self.session.default_fix.draw()
