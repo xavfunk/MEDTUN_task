@@ -2,7 +2,7 @@ preferences:
   general:
     audioLib: sounddevice
     units: deg
-
+    defaultGammaFailPolicy: warn
 
 window:
     size: [1920, 1080]
@@ -17,8 +17,7 @@ monitor:
     name: default
     width: 69.8  # in cm
     distance: 196  # in cm
-    gamma: 2.1 # activate this setting for BOLD screen!
-    # gamma: 1
+    # gamma: 2.1 # activate this setting for BOLD screen!!!
 
 
 mouse:
@@ -70,7 +69,7 @@ stimuli:
     # runs 2, 4, 6, 8, 10, ...
     # trial_sequence: 'trial_sequences/tr-200_min-3_tsearch-12_002.csv'
     # ATTENTION: In the current implementation of the task, this will be overwritten to comply with seqs_df.csv
-    trial_sequence: 'trial_sequences/tr-200_tnullmin-2tr_tsearch-20_001.csv' 
+    # trial_sequence: 'trial_sequences/tr-200_tnullmin-2tr_tsearch-20_001.csv' 
     # test
     # trial_sequence: 'trial_sequences/test/trial_sequence_s000_short.csv'
     # tex_type: 'minmax'                     # either of ['rms', 'minmax'], determines the rescaling used
@@ -78,7 +77,7 @@ stimuli:
     scanner_sync: True                 # set this to true to make phase p0 (prep) end on input 't', overrides default TR/2
     #screenshot: True                   # TODO implement
     stim_types: ['dur', 'isi']         # stimulus types, ['dur', 'isi']
-    stim_conds: [0, 0, 3 , 6, 9, 12, 21, 33, 57, 90, 147, 240] # stimulus condition in frames, interpreted as either stimulus duration ('dur' trials) or isi ('isi' trials)
+    stim_conds: [0, 0, 3, 6, 9, 12, 15, 21, 30, 42, 63, 90] # stimulus condition in frames, interpreted as either stimulus duration ('dur' trials) or isi ('isi' trials)
     fixed_duration: 16                 # fixed duration for ISI trials
     stim_duration: 240                  # total duration of the stimulus presentation in frames ()
     iti_durations: 0                   # TODO [0, 1, 2, 3] for indexing the iti df or ['const']
